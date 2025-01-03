@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime Blurred Quest</title>
+
+    <!-- External CSS File -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Main Container -->
+    <!-- This serves as the central wrapper for all content. It applies styling and layout management for the game. -->
+    <div class="container">
+      <!-- Game Title and Description -->
+      <!-- Provides the name of the game and a brief description to inform users about the gameplay. -->
+      <div class="text-container">
+        <h1 class="game-title">Anime Blurred Quest</h1>
+        <p class="game-description">
+          "Guess the anime character! Use hints wisely and see how many you can
+          guess before attempts run out!"
+        </p>
+      </div>
+
+      <!-- Scoreboard -->
+      <!-- Displays the player's current score and remaining attempts. This is dynamically updated during gameplay. -->
+      <div class="score-board">
+        <p class="score">Score: <span id="score">0</span></p>
+        <p class="attempts">Attempts: <span id="attempts">0</span></p>
+      </div>
+
+      <!-- Image Container -->
+      <!-- Displays the blurred image of the anime character. Players will guess based on this image. -->
+      <div class="image-container">
+        <img id="blurred-image" src="" alt="Blurred character" />
+      </div>
+
+      <!-- Hint and Extra Hint Section -->
+      <div id="hint-container">
+        <p id="hint"><strong>Hint:</strong> This character loves ramen!</p>
+        <p id="extra-hint" class="hidden">
+          <strong>Extra Hint:</strong> This character is known for their spiky
+          blonde hair and ninja skills.
+        </p>
+      </div>
+
+      <!-- Input Field -->
+      <!-- Allows the player to type their guess for the character. -->
+      <input type="text" id="guess-input" placeholder="Enter your guess..." />
+
+      <!-- Action Buttons -->
+      <div class="buttons">
+        <!-- Hint Button -->
+        <!-- Allows the player to reveal the extra hint, with a penalty to their score. -->
+        <button id="hint-button">Get Extra Hint (-1 Point)</button>
+
+        <!-- Submit Guess Button -->
+        <!-- Submits the player's guess for validation. -->
+        <button id="submit-button">Submit Guess</button>
+      </div>
+
+      <!-- Next Character Button -->
+      <!-- Moves to the next character in the game. -->
+      <button id="next-button">Next Character →</button>
+
+      <!-- Feedback Section -->
+      <!-- Provides feedback on the player's guess, such as whether it was correct or incorrect. -->
+      <p id="feedback"></p>
+    </div>
+
+    <!-- External JavaScript File -->
+    <!-- Links to the JavaScript file that contains all the dynamic functionality for the game. -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
