@@ -92,6 +92,7 @@ let currentCharacterIndex = Math.floor(Math.random()*characters.length);
 //Set initial score and attempts to 0
 let score = 0;
 let attempts = 0;
+let character = characters[currentCharacterIndex]; 
 
 // DOM Elements
 const characterImage = document.getElementById("blurred-image");
@@ -106,9 +107,10 @@ const scoreElement = document.getElementById("score");
 
 // Initialize the game
 function loadCharacter() {
+  console.log(scoreElement.textContent);
   //Generate Random Number to
   //Commenting to try use as global variable
-  const character = characters[currentCharacterIndex]; 
+  character = characters[currentCharacterIndex];
   characterImage.src = character.image;
   characterImage.classList.add('blurred')
   console.log(characterImage.src);
@@ -117,56 +119,64 @@ function loadCharacter() {
   extraHint.classList.add('hidden');
   feedback.textContent = "";
   guessInput.value = "";
-  resetAttempts();
+  currentCharacterIndex = Math.floor(Math.random()*characters.length);
   characterImage.classList.add("blurred");
-  // getExtraHintBtn.classList.add("hidden"); NO LONGER IN USE
-  // nextCharacterButton.classList.add(""); NO LONGER IN USE
+
 }
 
 // Increase the score
 function increaseScore() {
   score++;
-  scoreElement.innerHTML = score;
+  scoreElement.textContent = score;
 }
 function decreaseScore(){
   score--;
-  scoreElement.innerHTML = score;
+  scoreElement.textContent = score;
 } 
 //increase attempts
 function increaseAttempts(){
   attempts++;
   document.getElementById('attempts').textContent = attempts;
+  gameCheck();
 }
 function resetAttempts(){
 attempts = 0;
 document.getElementById('attempts').textContent = attempts;
+}
+function resetScore(){
+  score = 0;
+  scoreElement.textContent = score;
+  }
+function gameCheck(){
+  if(attempts === 3){
+    alert("You have reached 3 attempts. Game Over.");
+    resetAttempts();
+    resetScore();
+    loadCharacter();
+  }
 }
 
 
 // Check the user's guess
 submitGuessButton.addEventListener("click", () => {
   const guess = guessInput.value.trim();
-  const character = characters[currentCharacterIndex]; 
+//  character = characters[currentCharacterIndex]; 
   console.log('Submit Guess Button Pressed.');
     if(guess === ""){
       feedback.textContent = "Your Answer is Empty. Try again.";
+      console.log('EMPTY STRING BLOCK EXECUTED');
     }
-    else if (guess.toLowerCase() === character.name.toLowerCase()) {
+    else if((guess.toLowerCase()) === (character.name.toLowerCase())) {
     feedback.textContent = "Correct! Well done!";
     increaseScore();
-    increaseAttempts(); 
+    console.log('CORRECT GUESS BLOCK EXECUTED');
+    // increaseAttempts(); 
     characterImage.classList.remove("blurred");
-  } else {
+  } else{
     increaseAttempts();
-    //Not Currently in Use or complete, Code for disabling Submit Button once attempt maximum is reached
-    // getExtraHintBtn.classList.remove('hidden');
-    // feedback.textContent = `Incorrect! Try again (${
-    //   3 - attempts
-    // } attempts left).`;
-    // if (attempts >= 3) {
-    //   getExtraHintBtn.classList.remove("");
-    //   submitGuessButton.disabled = true;
-    // }
+    feedback.textContent = 'Incorrect! Try again';
+    console.log('INCORRECT GUESS BLOCK EXECUTED');
+   
   }
 });
 
